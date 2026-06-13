@@ -3,9 +3,16 @@
 import { MouseEvent, ReactNode, useRef } from "react";
 import styles from "./SpotlightCard.module.scss";
 
-// A card whose coral glow follows the cursor, with a subtle lift on hover.
+// A card that lifts off the page with a soft shadow, and whose emerald glow
+// follows the cursor on hover. `featured` adds an always-on emerald gradient.
 // Pure CSS + a tiny mousemove handler — no animation library.
-export function SpotlightCard({ children }: { children: ReactNode }) {
+export function SpotlightCard({
+  children,
+  featured = false,
+}: {
+  children: ReactNode;
+  featured?: boolean;
+}) {
   const ref = useRef<HTMLDivElement>(null);
 
   const handleMove = (e: MouseEvent<HTMLDivElement>) => {
@@ -17,7 +24,11 @@ export function SpotlightCard({ children }: { children: ReactNode }) {
   };
 
   return (
-    <div ref={ref} onMouseMove={handleMove} className={styles.card}>
+    <div
+      ref={ref}
+      onMouseMove={handleMove}
+      className={featured ? `${styles.card} ${styles.featured}` : styles.card}
+    >
       {children}
     </div>
   );

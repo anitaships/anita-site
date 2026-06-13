@@ -3,17 +3,27 @@
   height: 100%;
   border-radius: 12px;
   border: 1px solid var(--neutral-alpha-weak);
-  transition: border-color 0.3s ease, transform 0.3s ease;
+  // subtle filled surface so the card lifts off the flat page
+  background: rgba(255, 255, 255, 0.02);
+  // soft layered shadow = depth
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.28),
+    0 10px 30px rgba(0, 0, 0, 0.16);
+  transition:
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   overflow: hidden;
 }
 
+// cursor-following emerald glow
 .card::before {
   content: "";
   position: absolute;
   inset: 0;
   background: radial-gradient(
     260px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(20, 122, 92, 0.16),
+    rgba(20, 122, 92, 0.18),
     transparent 65%
   );
   opacity: 0;
@@ -24,8 +34,26 @@
 .card:hover {
   border-color: rgba(20, 122, 92, 0.55);
   transform: translateY(-3px);
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.34),
+    0 18px 44px rgba(20, 122, 92, 0.12);
 }
 
 .card:hover::before {
   opacity: 1;
+}
+
+// Featured variant — always-on emerald gradient so it stands out without hover
+.featured {
+  border-color: rgba(20, 122, 92, 0.4);
+  background:
+    radial-gradient(130% 130% at 85% -10%, rgba(20, 122, 92, 0.16), transparent 58%),
+    linear-gradient(rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0.025));
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 14px 40px rgba(20, 122, 92, 0.1);
+}
+
+.featured:hover {
+  border-color: rgba(20, 122, 92, 0.7);
 }

@@ -125,7 +125,7 @@ export default function About() {
         </Column>
         {creator.building.featured && (
           <Reveal delay={0.1}>
-            <SpotlightCard>
+            <SpotlightCard featured>
               <Column fillWidth gap="8" padding="l">
                 <Row gap="8" vertical="center" wrap>
                   <Text variant="label-strong-l" onBackground="neutral-strong">
