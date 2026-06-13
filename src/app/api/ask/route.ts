@@ -77,6 +77,13 @@ export async function POST(req: NextRequest) {
   const stream = new ReadableStream<Uint8Array>({
     async start(controller) {
       let buffer = "";
+      let closed = false;
+      const safeClose = () => {
+        if (!closed) {
+          closed = true;
+          controller.close();
+        }
+      };
       try {
         while (true) {
           const { done, value } = await reader.read();
@@ -89,7 +96,7 @@ export async function POST(req: NextRequest) {
             if (!t.startsWith("data:")) continue;
             const data = t.slice(5).trim();
             if (data === "[DONE]") {
-              controller.close();
+              safeClose();
               return;
             }
             try {
@@ -101,8 +108,10 @@ export async function POST(req: NextRequest) {
             }
           }
         }
+      } catch {
+        // upstream read error — fall through and close gracefully
       } finally {
-        controller.close();
+        safeClose();
       }
     },
     cancel() {

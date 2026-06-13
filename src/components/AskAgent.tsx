@@ -6,6 +6,17 @@ import styles from "./AskAgent.module.scss";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
+// Strip Markdown the chat can't render (the model sometimes ignores the prompt).
+// Runs on the full accumulated string, so it's safe even when ** is split across chunks.
+function clean(s: string): string {
+  return s
+    .replace(/\*\*/g, "")
+    .replace(/\*/g, "")
+    .replace(/`/g, "")
+    .replace(/^#{1,6}\s+/gm, "")
+    .replace(/^\s*[-•]\s+/gm, "");
+}
+
 const PRESETS = [
   "What are Anita's strongest skills?",
   "What projects has she shipped?",
@@ -61,7 +72,7 @@ function AskAgentWidget() {
         const { done, value } = await reader.read();
         if (done) break;
         acc += decoder.decode(value, { stream: true });
-        setMessages([...next, { role: "assistant", content: acc }]);
+        setMessages([...next, { role: "assistant", content: clean(acc) }]);
       }
     } catch {
       setMessages([

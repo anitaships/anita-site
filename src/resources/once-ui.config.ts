@@ -194,7 +194,7 @@ const schema: SchemaConfig = {
 // social links
 const sameAs: SameAsConfig = {
   linkedin: "https://www.linkedin.com/in/anita-liu-9a6417362/",
-  github: "https://github.com/lyongqing818-stack",
+  github: "https://github.com/anitaships",
 };
 
 // social sharing configuration for blog posts

@@ -31,7 +31,7 @@ const social: Social = [
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/lyongqing818-stack",
+    link: "https://github.com/anitaships",
     essential: true,
   },
   {
