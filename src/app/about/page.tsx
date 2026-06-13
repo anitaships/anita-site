@@ -123,6 +123,26 @@ export default function About() {
             </Reveal>
           ))}
         </Column>
+        {creator.building.featured && (
+          <Reveal delay={0.1}>
+            <SpotlightCard>
+              <Column fillWidth gap="8" padding="l">
+                <Row gap="8" vertical="center" wrap>
+                  <Text variant="label-strong-l" onBackground="neutral-strong">
+                    {creator.building.featured.label}
+                  </Text>
+                  <Tag size="s">{creator.building.featured.tagline}</Tag>
+                </Row>
+                <Text variant="body-default-m" onBackground="neutral-weak" wrap="balance">
+                  {creator.building.featured.description}
+                </Text>
+                <SmartLink href={creator.building.featured.href}>
+                  {creator.building.featured.cta}
+                </SmartLink>
+              </Column>
+            </SpotlightCard>
+          </Reveal>
+        )}
       </Column>
 
       {/* Off the clock */}

@@ -1,0 +1,82 @@
+// Cursor-following pupils (idle open eye + chibi eyes).
+.pupils {
+  transform: translate(var(--px, 0px), var(--py, 0px));
+  transition: transform 0.12s ease-out;
+}
+
+// Lying (idle) cat — gentle breathing + lazy tail flick.
+.lie {
+  display: block;
+  overflow: visible;
+  transform-origin: 50% 90%;
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.lieTail {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: flick 3.6s ease-in-out infinite;
+}
+
+// Sitting (active) chibi — soft breathing + a tiny paw wiggle.
+.sit {
+  display: block;
+  overflow: visible;
+  transform-origin: 50% 95%;
+  animation: breathe 3.6s ease-in-out infinite;
+}
+
+.pawL,
+.pawR {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: paw 4.5s ease-in-out infinite;
+}
+.pawR {
+  animation-delay: 0.4s;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: translateY(0) scaleY(1);
+  }
+  50% {
+    transform: translateY(-0.5px) scaleY(1.02);
+  }
+}
+
+@keyframes flick {
+  0%,
+  70%,
+  100% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(-8deg);
+  }
+  90% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes paw {
+  0%,
+  85%,
+  100% {
+    transform: rotate(0deg);
+  }
+  92% {
+    transform: rotate(-6deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lie,
+  .sit,
+  .lieTail,
+  .pawL,
+  .pawR {
+    animation: none;
+  }
+}

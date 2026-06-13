@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { RiSparkling2Fill, RiCloseLine, RiArrowUpLine } from "react-icons/ri";
+import { RiCloseLine, RiArrowUpLine } from "react-icons/ri";
+import { Cat } from "./Cat";
 import styles from "./AskAgent.module.scss";
 
 type Msg = { role: "user" | "assistant"; content: string };
@@ -35,8 +36,16 @@ function AskAgentWidget() {
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showBubble, setShowBubble] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  // Proactive greeting bubble pops up a few seconds after load (boosts clicks).
+  useEffect(() => {
+    if (open) return;
+    const t = setTimeout(() => setShowBubble(true), 4500);
+    return () => clearTimeout(t);
+  }, [open]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -98,22 +107,45 @@ function AskAgentWidget() {
   return (
     <>
       {!open && (
-        <button
-          type="button"
-          aria-label="Ask about Anita's work"
-          className={styles.fab}
-          onClick={() => setOpen(true)}
-        >
-          <RiSparkling2Fill />
-          <span>Ask about my work</span>
-        </button>
+        <div className={styles.launcher}>
+          {showBubble && (
+            <button
+              type="button"
+              className={styles.bubble}
+              onClick={() => setOpen(true)}
+            >
+              Hi 🐾 Ask me about Anita
+              <span
+                className={styles.bubbleClose}
+                role="button"
+                aria-label="Dismiss"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowBubble(false);
+                }}
+              >
+                <RiCloseLine />
+              </span>
+            </button>
+          )}
+          <button
+            type="button"
+            aria-label="Ask about Anita's work"
+            className={styles.catBtn}
+            onClick={() => setOpen(true)}
+          >
+            <Cat pose="lying" size={116} />
+          </button>
+        </div>
       )}
 
       {open && (
         <div className={styles.panel} role="dialog" aria-label="Ask about Anita's work">
           <header className={styles.head}>
             <div className={styles.title}>
-              <span className={styles.dot} />
+              <span className={styles.headCat}>
+                <Cat pose="sitting" size={28} follow={false} />
+              </span>
               Ask about my work
             </div>
             <button

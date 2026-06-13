@@ -360,6 +360,14 @@ const creator = {
       "Building toward a one-person company (OPC) — one person, the output of a team.",
       "Writing as a growth blogger — documenting real work, side projects, and going global.",
     ],
+    featured: {
+      label: "agency-of-one",
+      tagline: "One person, a whole org chart.",
+      description:
+        "An open AI skill library — 16 tools across 7 \"departments\", each doing the job of a role you'd otherwise hire. Built AI-native, as a non-engineer.",
+      cta: "See it on GitHub ↗",
+      href: "https://github.com/anitaships/agency-of-one",
+    },
   },
   interests: {
     title: "Off the clock",

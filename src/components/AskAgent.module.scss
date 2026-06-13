@@ -6,33 +6,88 @@ $border: var(--neutral-border-medium, rgba(255, 255, 255, 0.12));
 $text: var(--neutral-on-background-strong, #e8efec);
 $text-weak: var(--neutral-on-background-weak, rgba(232, 239, 236, 0.6));
 
-.fab {
+.launcher {
   position: fixed;
-  right: 24px;
-  bottom: 24px;
+  right: 22px;
+  bottom: 18px;
   z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.catBtn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  line-height: 0;
+  filter: drop-shadow(0 8px 16px rgba(20, 122, 92, 0.35));
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  // perks up & leans in on hover
+  &:hover {
+    transform: translateY(-4px) scale(1.06) rotate(-3deg);
+  }
+  &:active {
+    transform: translateY(-1px) scale(0.98);
+  }
+}
+
+.bubble {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 18px;
-  border: none;
-  border-radius: 999px;
-  background: $green;
-  color: #fff;
-  font-size: 14px;
+  gap: 6px;
+  max-width: 220px;
+  padding: 9px 13px;
+  margin-right: 6px;
+  border: 1px solid $border;
+  border-radius: 14px;
+  border-bottom-right-radius: 4px;
+  background: $surface;
+  color: $text;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  box-shadow: 0 8px 28px rgba(20, 122, 92, 0.38);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-
-  svg {
-    font-size: 18px;
-  }
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  animation: pop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 34px rgba(20, 122, 92, 0.5);
+    border-color: $green;
   }
+}
+
+.bubbleClose {
+  display: grid;
+  place-items: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  color: $text-weak;
+  font-size: 13px;
+
+  &:hover {
+    color: $text;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.headCat {
+  display: inline-flex;
+  line-height: 0;
 }
 
 .panel {

@@ -10,6 +10,7 @@ import {
   Schema,
   Meta,
   Tag,
+  SmartLink,
 } from "@once-ui-system/core";
 import { home, about, person, baseURL, work, showcase } from "@/resources";
 import { Mailchimp } from "@/components";
@@ -180,20 +181,25 @@ export default function Home() {
 
       {/* Stats — animated count-up */}
       <Reveal>
-        <Row fillWidth horizontal="center" wrap gap="40" paddingY="16">
-          {showcase.stats.map((s) => (
-            <Column key={s.label} horizontal="center" align="center" gap="4" minWidth={10}>
-              <Heading variant="display-strong-l">
-                <span className="brandGradientText">
-                  <CountUp value={s.value} prefix={s.prefix} suffix={s.suffix} />
-                </span>
-              </Heading>
-              <Text variant="body-default-s" onBackground="neutral-weak">
-                {s.label}
-              </Text>
-            </Column>
-          ))}
-        </Row>
+        <Column fillWidth horizontal="center" gap="16">
+          <Row fillWidth horizontal="center" wrap gap="40" paddingY="16">
+            {showcase.stats.map((s) => (
+              <Column key={s.label} horizontal="center" align="center" gap="4" minWidth={10}>
+                <Heading variant="display-strong-l">
+                  <span className="brandGradientText">
+                    <CountUp value={s.value} prefix={s.prefix} suffix={s.suffix} />
+                  </span>
+                </Heading>
+                <Text variant="body-default-s" onBackground="neutral-weak">
+                  {s.label}
+                </Text>
+              </Column>
+            ))}
+          </Row>
+          <SmartLink href="https://github.com/anitaships/agency-of-one">
+            See the toolkit on GitHub — one person, a whole org chart ↗
+          </SmartLink>
+        </Column>
       </Reveal>
 
       {/* Selected work — teaser only; full list lives on /work */}
