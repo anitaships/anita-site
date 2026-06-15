@@ -11,6 +11,7 @@ import {
   Meta,
   Tag,
   SmartLink,
+  Line,
 } from "@once-ui-system/core";
 import { home, about, person, baseURL, work, showcase } from "@/resources";
 import { Mailchimp } from "@/components";
@@ -18,6 +19,7 @@ import { Projects } from "@/components/work/Projects";
 import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { CountUp } from "@/components/CountUp";
+import { SectionHeader } from "@/components/SectionHeader";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -118,11 +120,7 @@ export default function Home() {
 
       {/* What I do */}
       <Column fillWidth gap="l">
-        <Reveal>
-          <Heading as="h2" variant="display-strong-xs">
-            {showcase.capabilities.title}
-          </Heading>
-        </Reveal>
+        <SectionHeader index="01" eyebrow="Capabilities" title={showcase.capabilities.title} />
         <Reveal delay={0.05}>
           <Text onBackground="neutral-weak" variant="body-default-l" wrap="balance">
             {showcase.identity}
@@ -148,11 +146,7 @@ export default function Home() {
 
       {/* What I bring */}
       <Column fillWidth gap="m">
-        <Reveal>
-          <Heading as="h2" variant="display-strong-xs">
-            {showcase.resources.title}
-          </Heading>
-        </Reveal>
+        <SectionHeader index="02" eyebrow="Assets" title={showcase.resources.title} />
         <Reveal delay={0.05}>
           <Text onBackground="neutral-weak" variant="body-default-l">
             {showcase.resources.subtitle}
@@ -205,10 +199,25 @@ export default function Home() {
       {/* Selected work — teaser only; full list lives on /work */}
       <Reveal>
         <Column fillWidth gap="l">
+          <Line background="neutral-alpha-weak" />
           <Row fillWidth horizontal="between" vertical="end">
-            <Heading as="h2" variant="display-strong-xs">
-              Selected work
-            </Heading>
+            <Column gap="16">
+              <Row gap="12" vertical="center">
+                <Text variant="label-default-s" onBackground="brand-weak">
+                  03
+                </Text>
+                <Text
+                  variant="label-default-s"
+                  onBackground="neutral-weak"
+                  style={{ letterSpacing: "0.16em", textTransform: "uppercase" }}
+                >
+                  Work
+                </Text>
+              </Row>
+              <Heading as="h2" variant="display-strong-xs">
+                Selected work
+              </Heading>
+            </Column>
             <Button href={work.path} variant="tertiary" size="s" weight="default" arrowIcon>
               View all
             </Button>

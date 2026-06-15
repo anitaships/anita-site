@@ -2,6 +2,7 @@ import { Column, Heading, Text, Row, Tag, Media, SmartLink, Meta, Schema } from 
 import { baseURL, about, person, creator } from "@/resources";
 import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
+import { SectionHeader } from "@/components/SectionHeader";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -65,11 +66,7 @@ export default function About() {
 
       {/* Content channels */}
       <Column fillWidth gap="m">
-        <Reveal>
-          <Heading as="h2" variant="display-strong-xs">
-            {creator.channels.title}
-          </Heading>
-        </Reveal>
+        <SectionHeader index="01" eyebrow="Channels" title={creator.channels.title} />
         <Reveal delay={0.05}>
           <Text onBackground="neutral-weak" variant="body-default-l" wrap="balance">
             {creator.channels.subtitle}
@@ -104,11 +101,7 @@ export default function About() {
 
       {/* Building in public */}
       <Column fillWidth gap="m">
-        <Reveal>
-          <Heading as="h2" variant="display-strong-xs">
-            {creator.building.title}
-          </Heading>
-        </Reveal>
+        <SectionHeader index="02" eyebrow="In progress" title={creator.building.title} />
         <Reveal delay={0.05}>
           <Text onBackground="neutral-weak" variant="body-default-l">
             {creator.building.subtitle}
@@ -147,11 +140,7 @@ export default function About() {
 
       {/* Off the clock */}
       <Column fillWidth gap="m">
-        <Reveal>
-          <Heading as="h2" variant="display-strong-xs">
-            {creator.interests.title}
-          </Heading>
-        </Reveal>
+        <SectionHeader index="03" eyebrow="Beyond work" title={creator.interests.title} />
         <Reveal delay={0.05}>
           <Row fillWidth gap="8" wrap>
             {creator.interests.items.map((it) => (
