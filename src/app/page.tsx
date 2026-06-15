@@ -130,8 +130,11 @@ export default function Home() {
           {showcase.capabilities.items.map((item, i) => (
             <Reveal key={item.title} delay={i * 0.08} style={{ flex: "1 1 calc(50% - 8px)", minWidth: "16rem" }}>
               <SpotlightCard>
-                <Column fillWidth gap="8" padding="l">
-                  <Heading as="h3" variant="heading-strong-m">
+                <Column fillWidth gap="12" padding="xl">
+                  <Heading variant="display-strong-s">
+                    <span className="brandGradientText">0{i + 1}</span>
+                  </Heading>
+                  <Heading as="h3" variant="heading-strong-l" wrap="balance">
                     {item.title}
                   </Heading>
                   <Text onBackground="neutral-weak" variant="body-default-m">
@@ -152,25 +155,23 @@ export default function Home() {
             {showcase.resources.subtitle}
           </Text>
         </Reveal>
-        <Column fillWidth gap="8" marginTop="8">
+        <Row fillWidth gap="16" wrap marginTop="8">
           {showcase.resources.items.map((item, i) => (
-            <Reveal key={item.title} delay={i * 0.06}>
+            <Reveal key={item.title} delay={i * 0.06} style={{ flex: "1 1 calc(50% - 8px)", minWidth: "16rem" }}>
               <SpotlightCard>
-                <Row fillWidth gap="16" vertical="start" padding="m">
-                  <Text variant="heading-default-xl">{item.emoji}</Text>
-                  <Column gap="4">
-                    <Text variant="label-strong-m" onBackground="neutral-strong">
-                      {item.title}
-                    </Text>
-                    <Text onBackground="neutral-weak" variant="body-default-m">
-                      {item.description}
-                    </Text>
-                  </Column>
-                </Row>
+                <Column fillWidth gap="12" padding="l">
+                  <Text variant="display-default-xs">{item.emoji}</Text>
+                  <Heading as="h3" variant="heading-strong-m" wrap="balance">
+                    {item.title}
+                  </Heading>
+                  <Text onBackground="neutral-weak" variant="body-default-m">
+                    {item.description}
+                  </Text>
+                </Column>
               </SpotlightCard>
             </Reveal>
           ))}
-        </Column>
+        </Row>
       </Column>
 
       {/* Stats — animated count-up */}
