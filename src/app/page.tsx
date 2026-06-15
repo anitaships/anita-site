@@ -20,6 +20,7 @@ import { Reveal } from "@/components/Reveal";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { CountUp } from "@/components/CountUp";
 import { SectionHeader } from "@/components/SectionHeader";
+import { Carousel } from "@/components/Carousel";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -126,11 +127,11 @@ export default function Home() {
             {showcase.identity}
           </Text>
         </Reveal>
-        <Row fillWidth gap="16" wrap marginTop="8">
+        <Carousel>
           {showcase.capabilities.items.map((item, i) => (
-            <Reveal key={item.title} delay={i * 0.08} style={{ flex: "1 1 calc(50% - 8px)", minWidth: "16rem" }}>
+            <Reveal key={item.title} delay={i * 0.08} style={{ flex: "0 0 auto", width: 340, maxWidth: "85vw" }}>
               <SpotlightCard>
-                <Column fillWidth gap="12" padding="xl">
+                <Column fillWidth gap="12" padding="xl" style={{ height: "100%" }}>
                   <Heading variant="display-strong-s">
                     <span className="brandGradientText">0{i + 1}</span>
                   </Heading>
@@ -144,7 +145,7 @@ export default function Home() {
               </SpotlightCard>
             </Reveal>
           ))}
-        </Row>
+        </Carousel>
       </Column>
 
       {/* What I bring */}
